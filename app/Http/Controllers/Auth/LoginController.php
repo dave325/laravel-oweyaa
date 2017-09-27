@@ -34,6 +34,18 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');
     }
+     /**
+     * Handle an authentication attempt.
+     *
+     * @return Response
+     */
+     public function authenticate()
+     {
+         if (Auth::attempt(['name' => $name, 'password' => $password])) {
+             // Authentication passed...
+             return true;
+         }
+     }
 }
